@@ -75,12 +75,12 @@
                                                 <td>{{ $item->role }}</td>
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>
-                                                    <div class="d-flex justify-content-center">
-                                                        <a href="" class="btn btn-icon btn-danger"><i
-                                                                class="fas fa-times"></i></a>
-                                                        <a href="" class="btn btn-icon btn-primary"><i
-                                                                class="far fa-edit"></i></a>
-                                                    </div>
+
+                                                    <a href="" class="btn btn-icon btn-danger"><i
+                                                            class="fas fa-times"></i></a>
+                                                    <a href="" class="btn btn-icon btn-primary"><i
+                                                            class="far fa-edit"></i></a>
+
                                                 </td>
                                             </tr>
                                         @endforeach
