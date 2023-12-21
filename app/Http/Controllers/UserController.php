@@ -50,9 +50,12 @@ class UserController extends Controller
 
         $validatedData['password'] = Hash::make($request['password']);
 
-        User::create($validatedData);
-
-        return redirect()->route('user.index')->with('success', 'User Successfully Created');
+        $user = User::create($validatedData);
+        if ($user) {
+            return redirect()->route('user.index')->with('success', 'User Successfully Created');
+        } else {
+            return back()->withInput()->with('error', 'Some problem occurred, please try again');
+        }
     }
 
 
