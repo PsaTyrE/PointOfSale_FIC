@@ -101,7 +101,8 @@
                             </div>
 
                             <div class="footer text-right">
-                                <button class="btn btn-primary">Submit</button>
+                                <button class="btn btn-icon icon-left btn-success"><i
+                                        class="fas fa-check"></i>Submit</button>
                                 <a href="#" class="btn btn-icon icon-left btn-danger"
                                     onclick="window.location.href='{{ route('user.index') }}'"><i class="fas fa-times"></i>
                                     Cancel</a>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Product')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,14 +11,14 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>User</h1>
+                <h1>product</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('user.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('product.create') }}" class="btn btn-primary">Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">User</a></div>
-                    <div class="breadcrumb-item">All User</div>
+                    <div class="breadcrumb-item"><a href="#">product</a></div>
+                    <div class="breadcrumb-item">All product</div>
                 </div>
             </div>
             <div class="section-body">
@@ -27,15 +27,15 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">User</h2>
+                <h2 class="section-title">Product</h2>
                 <p class="section-lead">
-                    You can manage all User, such as editing, deleting and more.
+                    You can manage all product, such as editing, deleting and more.
                 </p>
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All User</h4>
+                                <h4>All Product</h4>
                             </div>
                             <div class="card-body">
                                 <div class="float-left">
@@ -47,7 +47,7 @@
                                     </select>
                                 </div>
                                 <div class="float-right">
-                                    <form method="GET" action="{{ route('user.index') }}">
+                                    <form method="GET" action="{{ route('product.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="name">
                                             <div class="input-group-append">
@@ -62,38 +62,36 @@
                                         <tr>
                                             <th>No </th>
                                             <th>Name </th>
-                                            <th>Email </th>
-                                            <th>Role </th>
-                                            <th>Created At </th>
+                                            <th>Deskription </th>
+                                            <th>Price </th>
+                                            <th>Stock </th>
                                             <th>Action </th>
                                         </tr>
-                                        @php
-                                            $i = 1;
-                                        @endphp
-                                        @foreach ($user as $item)
+                                        @foreach ($product as $item)
                                             <tr>
-                                                <td>{{ $user->firstItem() + $loop->index }}</td>
+                                                <td>{{ $product->firstItem() + $loop->index }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td>{{ $item->email }}</td>
-                                                <td>{{ $item->role }}</td>
-                                                <td>{{ $item->created_at }}</td>
+                                                <td style="width: 900px; word-wrap: break-word;">{{ $item->description }}
+                                                </td>
+                                                <td>Rp. {{ $item->price }}
+                                                </td>
+                                                <td>{{ $item->stock }}</td>
                                                 <td>
-
                                                     <div class="container">
                                                         <div class="row">
                                                             <div class="d-flex">
-                                                                <form action="{{ route('user.destroy', $item->id) }}"
+                                                                <form action="{{ route('product.destroy', $item->id) }}"
                                                                     method="POST" class="mr-2">
                                                                     @method('DELETE')
                                                                     @csrf
                                                                     <button type="submit" class="btn btn-icon btn-danger"
-                                                                        onclick="return confirm('Are you sure you want to delete this user?')">
+                                                                        onclick="return confirm('Are you sure you want to delete this product?')">
                                                                         <i class="fas fa-times"></i>
                                                                     </button>
                                                                 </form>
 
 
-                                                                <a href="{{ route('user.edit', $item->id) }}"
+                                                                <a href="{{ route('product.edit', $item->id) }}"
                                                                     class="btn btn-icon btn-primary"><i
                                                                         class="far fa-edit"></i></a>
                                                             </div>
@@ -101,22 +99,19 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @php
-                                                $i++;
-                                            @endphp
                                         @endforeach
                                     </table>
                                 </div>
                                 <div class="float-left">
                                     Showing
-                                    {{ $user->firstItem() }}
+                                    {{ $product->firstItem() }}
                                     to
-                                    {{ $user->lastItem() }}
+                                    {{ $product->lastItem() }}
                                     of
-                                    {{ $user->total() }}
+                                    {{ $product->total() }}
                                 </div>
                                 <div class="float-right">
-                                    {{ $user->withQueryString()->links() }}
+                                    {{ $product->withQueryString()->links() }}
                                 </div>
                             </div>
 

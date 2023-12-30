@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit User')
+@section('title', 'Product Forms')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -27,9 +27,8 @@
             <div class="section-body">
                 <h2 class="section-title">Advanced Forms</h2>
                 <div class="card">
-                    <form action="{{ route('user.update', $user) }}" method="post">
+                    <form action="{{ route('product.store') }}" method="post">
                         @csrf
-                        @method('PUT')
                         <div class="card-header">
                             <h4>Input Text</h4>
                         </div>
@@ -40,7 +39,7 @@
                                     class="form-control @error('name')
                             is-invalid
                             @enderror"
-                                    name="name" value="{{ $user->name }}">
+                                    name="name">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -48,65 +47,78 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Email </label>
-                                <input type="email"
-                                    class="form-control @error('email')
+                                <label>Description </label>
+                                <input type="text"
+                                    class="form-control @error('description')
                             is-invalid
                             @enderror"
-                                    name="email" value="{{ $user->email }}">
-                                @error('email')
+                                    name="description">
+                                @error('description')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Password Strength</label>
+                                <label>Stock </label>
+                                <input type="number"
+                                    class="form-control @error('stock')
+                            is-invalid
+                            @enderror"
+                                    name="stock">
+                                @error('stock')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
-                                            <i class="fas fa-lock"></i>
+                                            <i class="fa-solid fa-dollar-sign"></i>
                                         </div>
                                     </div>
-                                    <input type="password"
-                                        class="form-control @error('password')
+                                    <input type="number"
+                                        class="form-control @error('price')
                                         is-invalid
                                     @enderror"
-                                        name="password">
+                                        name="price">
                                 </div>
-                                @error('password')
+                                @error('price')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Roles</label>
+                                <label class="form-label">Kategory</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="role" value="admin" class="selectgroup-input"
-                                            @if ($user->role === 'admin') checked @endif>
-                                        <span class="selectgroup-button">Admin</span>
+                                        <input type="radio" name="role" value="food" class="selectgroup-input"
+                                            checked>
+                                        <span class="selectgroup-button">Food</span>
                                     </label>
                                     <!-- Add more roles if needed -->
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="role" value="staff" class="selectgroup-input"
-                                            @if ($user->role === 'staff') checked @endif>
-                                        <span class="selectgroup-button">Staff</span>
+                                        <input type="radio" name="role" value="snack" class="selectgroup-input">
+                                        <span class="selectgroup-button">Snack</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="role" value="user" class="selectgroup-input"
-                                            @if ($user->role === 'user') checked @endif>
-                                        <span class="selectgroup-button">User</span>
+                                        <input type="radio" name="role" value="drink" class="selectgroup-input">
+                                        <span class="selectgroup-button">Drink</span>
                                     </label>
                                     <!-- Add as many roles as necessary -->
                                 </div>
                             </div>
 
                             <div class="footer text-right">
-                                <button class="btn btn-primary">Submit</button>
+                                <button class="btn btn-icon icon-left btn-success"><i
+                                        class="fas fa-check"></i>Submit</button>
                                 <a href="#" class="btn btn-icon icon-left btn-danger"
-                                    onclick="window.location.href='{{ route('user.index') }}'"><i class="fas fa-times"></i>
+                                    onclick="window.location.href='{{ route('product.index') }}'"><i
+                                        class="fas fa-times"></i>
                                     Cancel</a>
                             </div>
                         </div>

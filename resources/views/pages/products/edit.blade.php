@@ -27,7 +27,7 @@
             <div class="section-body">
                 <h2 class="section-title">Advanced Forms</h2>
                 <div class="card">
-                    <form action="{{ route('user.update', $user) }}" method="post">
+                    <form action="{{ route('product.update', $product) }}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
@@ -40,7 +40,7 @@
                                     class="form-control @error('name')
                             is-invalid
                             @enderror"
-                                    name="name" value="{{ $user->name }}">
+                                    name="name" value="{{ $product->name }}">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -48,56 +48,82 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Email </label>
-                                <input type="email"
-                                    class="form-control @error('email')
+                                <label>Description </label>
+                                <input type="text"
+                                    class="form-control @error('description')
                             is-invalid
                             @enderror"
-                                    name="email" value="{{ $user->email }}">
-                                @error('email')
+                                    name="description" value="{{ $product->description }}">
+                                @error('description')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
+                            {{-- <div class="form-group">
+                                <label>Price </label>
+                                <input type="text"
+                                    class="form-control @error('price')
+                            is-invalid
+                            @enderror"
+                                    name="price" value="{{ $product->price }}">
+                                @error('price')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div> --}}
                             <div class="form-group">
-                                <label>Password Strength</label>
+                                <label>Price</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
-                                            <i class="fas fa-lock"></i>
+                                            <i class="fa-solid fa-dollar-sign"></i>
                                         </div>
                                     </div>
-                                    <input type="password"
-                                        class="form-control @error('password')
+                                    <input type="number"
+                                        class="form-control @error('price')
                                         is-invalid
                                     @enderror"
-                                        name="password">
+                                        name="price" value="{{ $product->price }}">
                                 </div>
-                                @error('password')
+                                @error('price')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Roles</label>
+                                <label>Stock </label>
+                                <input type="text"
+                                    class="form-control @error('stock')
+                            is-invalid
+                            @enderror"
+                                    name="stock" value="{{ $product->stock }}">
+                                @error('stock')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Kategori </label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="role" value="admin" class="selectgroup-input"
-                                            @if ($user->role === 'admin') checked @endif>
-                                        <span class="selectgroup-button">Admin</span>
+                                        <input type="radio" name="role" value="food" class="selectgroup-input"
+                                            @if ($product->category === 'food') checked @endif>
+                                        <span class="selectgroup-button">food</span>
                                     </label>
                                     <!-- Add more roles if needed -->
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="role" value="staff" class="selectgroup-input"
-                                            @if ($user->role === 'staff') checked @endif>
-                                        <span class="selectgroup-button">Staff</span>
+                                        <input type="radio" name="role" value="drink" class="selectgroup-input"
+                                            @if ($product->category === 'drink') checked @endif>
+                                        <span class="selectgroup-button">drink</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="role" value="user" class="selectgroup-input"
-                                            @if ($user->role === 'user') checked @endif>
-                                        <span class="selectgroup-button">User</span>
+                                        <input type="radio" name="role" value="snack" class="selectgroup-input"
+                                            @if ($product->category === 'snack') checked @endif>
+                                        <span class="selectgroup-button">Snack</span>
                                     </label>
                                     <!-- Add as many roles as necessary -->
                                 </div>

@@ -15,7 +15,7 @@
                         <a class="nav-link" href="{{ route('user.index') }}">List All User</a>
                     </li>
                     <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
+                        <a class="nav-link" href="{{ route('product.index') }}">Ecommerce Dashboard</a>
                     </li>
                 </ul>
             </li>

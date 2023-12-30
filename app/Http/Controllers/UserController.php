@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequests;
 use App\Models\User;
 use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
         // $user = User::paginate(10);
         $user = DB::table('users')
             ->when($request->input('name'), function ($query, $name) {
@@ -72,22 +74,39 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('pages.users.edit', [
+            'type_menu' => '',
+            'user' => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequests $request, User $user)
     {
-        //
+        $validatedData = $request->validated(); // Menggunakan validated() untuk mendapatkan data yang sudah divalidasi
+
+        $user->update($validatedData);
+
+        if ($user) {
+            return redirect()->route('user.index')->with('success', 'User Successfully Updated');
+        } else {
+            return back()->withInput()->with('error', 'Some problem occurred, please try again');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        if ($user->delete()) {
+            return redirect()->route('user.index')->with('success', 'User Successfully Deleted');
+        } else {
+            return back()->withInput()->with('error', 'Some problem occurred, please try again');
+        }
     }
 }
+
